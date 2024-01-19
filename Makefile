@@ -36,12 +36,13 @@ ubuntu-requisites:
 darwin-requisites:
 	if [ "${shell sdl2-config --libs}" != "-lSDL2" ] brew install sdl2
 
-
+# From Getting Started Guide: https://github.com/ocornut/imgui/wiki/Getting-Started
 main.cpp:
 	wget https://raw.githubusercontent.com/ocornut/imgui/master/examples/example_sdl2_opengl3/main.cpp -O main.cpp
 
-imgui:
-	git clone https://github.com/ocornut/imgui.git ${IMGUI_DIR}
+# https://github.com/ocornut/imgui
+${IMGUI_DIR}:
+	git clone --branch "v1.90.1-docking" https://github.com/ocornut/imgui.git ${IMGUI_DIR}
 
 clean:
 	rm -f ${OBJS} ${EXE}
@@ -52,3 +53,4 @@ clobber:
 help:
 	@echo "all (default) | ${EXE} | clean | clobber"
 	@echo "ubuntu-requisites | darwin-requisites"
+
